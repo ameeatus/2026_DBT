@@ -1,0 +1,8 @@
+-- cehck if the sum of payments is not ngetaive
+
+select 
+order_id,
+sum(amount) as total_amount
+from {{ref('stg_stripe_payment')}}
+group by order_id
+having sum(amount) < 0
